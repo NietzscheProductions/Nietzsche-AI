@@ -134,6 +134,10 @@ svg {
     align-items: center;
 
     gap: 12px;
+
+    flex-shrink: 0;
+
+    min-width: 0;
 }
 
 
@@ -168,6 +172,8 @@ svg {
     letter-spacing: 0.2px;
 
     color: var(--text-primary);
+
+    white-space: nowrap;
 }
 
 
@@ -186,6 +192,8 @@ svg {
     text-transform: uppercase;
 
     margin-top: 2px;
+
+    white-space: nowrap;
 }
 
 
@@ -195,6 +203,8 @@ svg {
     align-items: center;
 
     gap: 8px;
+
+    flex-shrink: 0;
 }
 
 
@@ -218,6 +228,10 @@ svg {
 
     font-size: 12.5px;
     font-weight: 500;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
 
     transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
 }
@@ -552,6 +566,8 @@ svg {
     display: flex;
 
     gap: 8px;
+
+    flex-shrink: 0;
 }
 
 
@@ -575,6 +591,10 @@ svg {
 
     font-size: 12px;
     font-weight: 500;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
 
     transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
 }
