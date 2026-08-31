@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sign in | Nietzsche AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+            --bg-canvas:      #0a0b0d;
+            --bg-surface-2:   #15171d;
+            --bg-surface-3:   #1b1e25;
+            --border:         #23262e;
+            --border-strong:  #33373f;
+            --text-primary:   #eef0f3;
+            --text-secondary: #9aa0ab;
+            --text-muted:     #666c77;
+            --accent:         #d4af37;
+            --accent-hover:   #e3c15a;
+            --accent-dim:     #8a7228;
+            --on-accent:      #14120a;
+            --danger:         #e5484d;
+            --danger-wash:    rgba(229, 72, 77, 0.12);
+            --success:        #3ecf8e;
+            --success-wash:   rgba(62, 207, 142, 0.12);
+            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --font-display: "Fraunces", Georgia, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background: var(--bg-canvas);
+            color: var(--text-primary);
+
+            font-family: var(--font-sans);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+
+            padding: 20px;
+        }
+
+
+        .login-box {
+            background: var(--bg-surface-2);
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            padding: 34px;
+
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .logo {
+            width: 46px;
+            height: 46px;
+
+            margin: 0 auto 18px;
+
+            background: var(--accent);
+
+            color: var(--on-accent);
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+
+        h1 {
+            margin: 0;
+
+            text-align: center;
+
+            font-family: var(--font-display);
+            font-size: 19px;
+            font-weight: 600;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .subtitle {
+            text-align: center;
+
+            color: var(--text-muted);
+
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+
+            margin-top: 7px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+
+        label {
+            display: block;
+
+            color: var(--text-secondary);
+
+            font-size: 12px;
+            font-weight: 500;
+
+            margin-bottom: 7px;
+        }
+
+
+        input {
+            width: 100%;
+
+            height: 42px;
+
+            background: var(--bg-surface-3);
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            color: var(--text-primary);
+
+            padding: 0 13px;
+
+            outline: none;
+
+            font-family: var(--font-sans);
+            font-size: 13.5px;
+
+            transition: border-color 0.12s ease;
+        }
+
+
+        input::placeholder {
+            color: var(--text-muted);
+        }
+
+
+        input:focus {
+            border-color: var(--accent-dim);
+        }
+
+
+        .auth-button {
+            width: 100%;
+
+            height: 42px;
+
+            margin-top: 6px;
+
+            border: 1px solid var(--accent);
+
+            border-radius: 8px;
+
+            background: var(--accent);
+
+            color: var(--on-accent);
+
+            font-weight: 600;
+            font-size: 13.5px;
+
+            cursor: pointer;
+
+            transition: background 0.12s ease, border-color 0.12s ease;
+        }
+
+
+        .auth-button:hover {
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+        }
+
+
+        .auth-button:disabled {
+            opacity: 0.5;
+
+            cursor: not-allowed;
+        }
+
+
+        .secondary-button {
+            width: 100%;
+
+            height: 40px;
+
+            margin-top: 10px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            background: var(--bg-surface-3);
+
+            color: var(--text-secondary);
+
+            font-size: 13px;
+            font-weight: 500;
+
+            cursor: pointer;
+
+            transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+        }
+
+
+        .secondary-button:hover {
+            background: var(--border);
+            border-color: var(--border-strong);
+            color: var(--text-primary);
+        }
+
+
+        .secondary-button:disabled {
+            opacity: 0.5;
+
+            cursor: not-allowed;
+        }
+
+
+        .link-button {
+            display: block;
+
+            width: 100%;
+
+            margin-top: 12px;
+
+            background: none;
+
+            border: none;
+
+            color: var(--text-muted);
+
+            font-family: var(--font-sans);
+            font-size: 12px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            padding: 4px;
+        }
+
+
+        .link-button:hover {
+            color: var(--accent);
+        }
+
+
+        .message {
+            display: none;
+
+            padding: 11px 13px;
+
+            margin-bottom: 16px;
+
+            border-radius: 8px;
+
+            font-size: 12.5px;
+
+            line-height: 18px;
+        }
+
+
+        .message.show {
+            display: block;
+        }
+
+
+        .message.error {
+            background: var(--danger-wash);
+
+            border: 1px solid var(--danger);
+
+            color: #ff9da5;
+        }
+
+
+        .message.success {
+            background: var(--success-wash);
+
+            border: 1px solid var(--success);
+
+            color: #77d8a1;
+        }
+
+
+        .footer {
+            text-align: center;
+
+            color: var(--text-muted);
+
+            font-size: 10.5px;
+
+            margin-top: 22px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <div class="logo">
+                N
+            </div>
+
+            <h1>
+                Nietzsche AI
+            </h1>
+
+            <div class="subtitle">
+                Nietzsche Productions
+            </div>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                >
+
+            </div>
+
+
+            <button
+                id="signInBtn"
+                class="auth-button"
+            >
+                Sign in
+            </button>
+
+
+            <button
+                id="forgotPasswordBtn"
+                class="link-button"
+                type="button"
+            >
+                Forgot password?
+            </button>
+
+
+            <button
+                id="createAccountBtn"
+                class="secondary-button"
+            >
+                Create account
+            </button>
+
+
+            <div class="footer">
+                Nietzsche AI · Nietzsche Productions
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Supabase -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://sotlnkobsnacifwkydok.supabase.co";
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_HBtq5d-FoTrVzsAVQ0hBfQ_TTrLxtZb";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
+
+
+        const emailInput =
+            document.getElementById("email");
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const signInBtn =
+            document.getElementById("signInBtn");
+
+        const createAccountBtn =
+            document.getElementById(
+                "createAccountBtn"
+            );
+
+        const forgotPasswordBtn =
+            document.getElementById(
+                "forgotPasswordBtn"
+            );
+
+        const message =
+            document.getElementById("message");
+
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            message.textContent =
+                text;
+
+            message.className =
+                `message show ${type}`;
+
+        }
+
+
+        function setLoading(
+            loading
+        ) {
+
+            signInBtn.disabled =
+                loading;
+
+            createAccountBtn.disabled =
+                loading;
+
+            signInBtn.textContent =
+                loading
+                    ? "Signing in…"
+                    : "Sign in";
+
+        }
+
+
+        async function signIn() {
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            if (!email || !password) {
+
+                showMessage(
+                    "Enter your email and password.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            setLoading(true);
+
+            message.className =
+                "message";
+
+
+            const {
+                error
+            } =
+                await supabaseClient.auth.signInWithPassword({
+
+                    email: email,
+
+                    password: password
+
+                });
+
+
+            if (error) {
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+                setLoading(false);
+
+                return;
+
+            }
+
+
+            showMessage(
+                "Signed in. Loading Nietzsche AI…",
+                "success"
+            );
+
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "index.html";
+
+            }, 700);
+
+        }
+
+
+        async function createAccount() {
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            if (!email || !password) {
+
+                showMessage(
+                    "Enter an email and password.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (password.length < 8) {
+
+                showMessage(
+                    "Your password must be at least 8 characters.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            setLoading(true);
+
+            signInBtn.textContent =
+                "Creating account…";
+
+
+            const {
+                error
+            } =
+                await supabaseClient.auth.signUp({
+
+                    email: email,
+
+                    password: password
+
+                });
+
+
+            if (error) {
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+                setLoading(false);
+
+                return;
+
+            }
+
+
+            showMessage(
+                "Account created. Check your email if confirmation is required.",
+                "success"
+            );
+
+
+            setLoading(false);
+
+        }
+
+
+        signInBtn.addEventListener(
+            "click",
+            signIn
+        );
+
+
+        async function sendPasswordReset() {
+
+            const email =
+                emailInput.value.trim();
+
+
+            if (!email) {
+
+                showMessage(
+                    "Enter your email above first, then click \"Forgot password?\" again.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            forgotPasswordBtn.disabled =
+                true;
+
+            forgotPasswordBtn.textContent =
+                "Sending…";
+
+
+            const resetUrl =
+                new URL(
+                    "reset-password.html",
+                    window.location.href
+                ).href;
+
+
+            const {
+                error
+            } =
+                await supabaseClient.auth.resetPasswordForEmail(
+                    email,
+                    {
+                        redirectTo:
+                            resetUrl
+                    }
+                );
+
+
+            forgotPasswordBtn.disabled =
+                false;
+
+            forgotPasswordBtn.textContent =
+                "Forgot password?";
+
+
+            if (error) {
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            showMessage(
+                "If an account exists for that email, a reset link is on its way.",
+                "success"
+            );
+
+        }
+
+
+        forgotPasswordBtn.addEventListener(
+            "click",
+            sendPasswordReset
+        );
+
+
+        createAccountBtn.addEventListener(
+            "click",
+            createAccount
+        );
+
+
+        passwordInput.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    signIn();
+
+                }
+
+            }
+        );
+
+
+        /* Check if already signed in */
+
+        supabaseClient.auth.getSession()
+            .then(({ data }) => {
+
+                if (
+                    data.session
+                ) {
+
+                    window.location.href =
+                        "index.html";
+
+                }
+
+            });
+
+    </script>
+
+</body>
+
+</html>
